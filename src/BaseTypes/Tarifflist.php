@@ -82,6 +82,13 @@ class Tarifflist extends Base
      * @var array
      */
     public $packages;
+    
+    /**
+     * 
+     * @Type("array<int, CdekSDK2\BaseTypes\Services>")
+     * @var array
+     */
+    public $services;
 
     /**
      * Intake constructor.
@@ -117,6 +124,14 @@ class Tarifflist extends Base
                 '',
                 function ($value) {
                     if ($value instanceof Package) {
+                        return $value->validate();
+                    }
+                }
+            ],
+            'services' => [
+                '',
+                function ($value) {
+                    if ($value instanceof Services) {
                         return $value->validate();
                     }
                 }
